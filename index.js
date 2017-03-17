@@ -110,8 +110,15 @@ module.exports = function(html, options) {
 
   /* amp tags */
   $(tags.amp.join(',')).each(function() {
+    if(this.name == "img") {
+      $(this).attr("layout","responsive");
+    }
     this.name = 'amp-' + this.name;
   });
-
+  
+  $("[style]").each(function(){
+    $(this).removeAttr('style');
+  })
+  
   return $.html();
 }
